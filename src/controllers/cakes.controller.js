@@ -4,7 +4,6 @@ export async function saveCakeController(req, res){
   const {name, price, image, description} = req.body;
   try {
     const hasTheSameName = await getCakeByNameRepository(name)
-    console.log(hasTheSameName)
     if(hasTheSameName.rows.length !== 0) return res.sendStatus(409)
     await saveCakeRepository(name, price, image, description)
     res.sendStatus(201);
