@@ -12,7 +12,7 @@ export function getOrderRepository(date) {
     const query = `
       SELECT
         orders.id, orders.clientId, orders.cakeId, orders.quantity, TO_CHAR(orders.createdAt, 'YYYY-MM-DD HH24:MI') AS time,
-        orders.totalPrice, clients.name, clients.address, clients.phone, cakes.name,
+        orders.totalPrice, clients.name AS clientName, clients.address, clients.phone, cakes.name AS cakeName,
         cakes.price, cakes.image, cakes.description
       FROM orders
       JOIN clients ON orders.clientId = clients.id
