@@ -1,5 +1,5 @@
 import { Router } from "express";
-import cakesRouter from "./cakes.route";
+import cakesRouter from "./cakes.route.js";
 
 
 const router = Router();

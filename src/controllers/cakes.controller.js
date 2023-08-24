@@ -1,14 +1,14 @@
-import { saveCakeRepository, getCakeByNameRepository } from "../repositories/cakes.repository";
+import { saveCakeRepository, getCakeByNameRepository } from "../repositories/cakes.repository.js";
 
 export async function saveCakeController(req, res){
   const {name, price, image, description} = req.body;
   try {
-
-    const hasTheSameName = (await getCakeByNameRepository(name)).rowCount
-    if(hasTheSameName > 0) return res.sendSatus(409)
+    const hasTheSameName = await getCakeByNameRepository(name)
+    console.log(hasTheSameName)
+    if(hasTheSameName.rows.length !== 0) return res.sendStatus(409)
     await saveCakeRepository(name, price, image, description)
-    res.sendSatus(201);
+    res.sendStatus(201);
   } catch (error) {
-    res.status(500).send(`Error while saving the cake ${err.message}`)
+    res.status(500).send(`Error while saving the cake ${error.message}`)
   }
 }

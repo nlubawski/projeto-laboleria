@@ -1,4 +1,4 @@
-import { db } from "../database/db.connection";
+import { db } from "../database/db.connection.js";
 
 export async function saveCakeRepository(name, price, image, description) {
   try {
