@@ -1,4 +1,4 @@
-import { saveCakeRepository, getCakeByNameRepository } from "../repositories/cakes.repository.js";
+import { saveCakeRepository, getCakeByNameRepository } from "../repositories/cake.repository.js";
 
 export async function saveCakeController(req, res){
   const {name, price, image, description} = req.body;

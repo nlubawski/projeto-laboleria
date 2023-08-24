@@ -1,4 +1,4 @@
-import { saveClientpository } from "../repositories/clients.repository.js";
+import { saveClientpository } from "../repositories/client.repository.js";
 
 export async function saveClientController(req, res){
   const {name, address, phone} = req.body;
