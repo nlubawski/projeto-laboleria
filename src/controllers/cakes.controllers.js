@@ -1,8 +1,10 @@
-import { saveCakeRepository } from "../repositories/cakes.repository";
+import { saveCakeRepository, getCakeByNameRepository } from "../repositories/cakes.repository";
 
 export async function saveCakeController(req, res){
   const {name, price, image, description} = req.body;
   try {
+
+    await getCakeByNameRepository(name)
     await saveCakeRepository(name, price, image, description)
     res.sendSatus(201);
   } catch (error) {

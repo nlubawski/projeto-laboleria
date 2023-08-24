@@ -7,3 +7,11 @@ export async function saveCakeRepository(name, price, image, description) {
     throw error
   }
 }
+
+export async function getCakeByNameRepository(name){
+  try {
+    return await db.query(`SELECT * FROM cakes WHERE name=$1`, [name])
+  } catch (error) {
+    throw error
+  }
+}
