@@ -15,3 +15,11 @@ export async function getCakeByNameRepository(name){
     throw error
   }
 }
+
+export async function getCakeByIdRepository(clientid){
+  try {
+    return await db.query('SELECT * FROM clients WHERE id = $1', [clientid]);
+  } catch (error) {
+    throw error
+  }
+}

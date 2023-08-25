@@ -7,3 +7,11 @@ export async function saveClientpository(name, address, phone) {
     throw error
   }
 }
+
+export async function getClientByIdRepository(id){
+  try {
+    return db.query('SELECT * FROM orders WHERE id = $1', [id]);
+  } catch (error) {
+    throw error
+  }
+}

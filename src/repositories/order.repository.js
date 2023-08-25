@@ -29,3 +29,11 @@ export async function getOrderRepository(date) {
     throw error
   }
 }
+
+export async function getOrderByIdRepository(id){
+  try {
+    return db.query('SELECT * FROM orders WHERE id = $1', [id]);
+  } catch (error) {
+    throw error
+  }
+}
