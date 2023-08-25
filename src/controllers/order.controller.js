@@ -3,9 +3,8 @@ import { saveOrderRepository, getOrderRepository } from "../repositories/order.r
 export async function saveOrderController(req, res){
   const {clientId, cakeId, quantity, totalPrice} = req.body;
   try {
-
     await saveOrderRepository(clientId, cakeId, quantity, totalPrice)
-    res.sendStatus(2001);
+    res.sendStatus(201);
   } catch (error) {
     res.status(500).send(`Error while saving the order ${error.message}`)
   }
@@ -16,17 +15,18 @@ export async function getOrderController(req, res){
   try {
     const orders = await getOrderRepository(date)
     if (!orders.rowCount) return res.status(404).send([])
+    console.log(orders)
     const formattedOrders = orders.rows.map((data) => {
       return {
           "client": {
-              "id": data.clientid,
-              "name": data.clientname,
+              "id": data.clientsid,
+              "name": data.clientName,
               "address": data.address,
               "phone": data.phone
           },
           "cake": {
-              "id": data.cakeid,
-              "name": data.cakename,
+              "id": data.cakesid,
+              "name": data.cakeName,
               "price": data.price,
               "description": data.description,
               "image": data.image
