@@ -18,13 +18,13 @@ export async function getClientByIdRepository(id){
 
 export async function getClientOrdersByIdRepository(id){
   try {
-      await db.query(` 
-        SELECT orders.id, orders.quantity, orders.totalprice, orders."createdAt", cakes.name
+      return await db.query(` 
+        SELECT orders.id, orders.quantity, orders.totalprice, orders.createdAt, cakes.name
         FROM orders as orders
-        JOIN clients as cls ON orders."clientid" =  $1
-        JOIN cakes as cakes ON cakes.id = orders."cakesid"
+        JOIN clients as client ON orders.clientid =  $1
+        JOIN cakes as cakes ON cakes.id = orders.cakeid
         GROUP BY orders.id, cakes.id 
-        ORDER BY orders.id, cakes.id ASC`, [id]);
+        ORDER BY orders.id, cakes.id ASC `, [id]);
   } catch (error) {
         throw error
   }

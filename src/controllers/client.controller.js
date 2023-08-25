@@ -1,4 +1,4 @@
-import { saveClientpository } from "../repositories/client.repository.js";
+import { getClientOrdersByIdRepository, saveClientpository } from "../repositories/client.repository.js";
 import { getOrderByIdController } from "./order.controller.js";
 
 export async function saveClientController(req, res){
@@ -14,10 +14,12 @@ export async function saveClientController(req, res){
 export async function getClientOrdersByIdController(req, res) {
     const { id } = req.params;
     try{
-        const orderData = await getOrderByIdController(id);                                  
-        if(orderData.rowCount == 0) return res.sendStatus(404)
+      console.log(id)
+        const orders = await getClientOrdersByIdRepository(id);   
+        console.log("orders", orders)                               
+        if(orders.rowCount == 0) return res.sendStatus(404)
         res.send({
-            Orders: orderData.rows
+            Orders: orders.rows
         }).status(200)
     } catch (error) {
         console.error(error);

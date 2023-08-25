@@ -17,7 +17,6 @@ export async function getOrderController(req, res){
   try {
     const orders = await getOrderRepository(date)
     if (!orders.rowCount) return res.status(404).send([])
-    console.log(orders)
     const formattedOrders = orders.rows.map((data) => {
       return {
           "client": {
